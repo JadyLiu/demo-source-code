@@ -1,7 +1,7 @@
 # Code Style Guide
 
 ## Legal
-- Always start with `Copyright (c) 2011-2025 Blackrock. All rights reserved.`
+- Always start with `Copyright (c) 2011-2025 Example Inc. All rights reserved.`
 
 ## Naming Conventions
 - Use `snake_case` for function and variable names.
