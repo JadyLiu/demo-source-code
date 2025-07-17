@@ -145,8 +145,4 @@ No external API keys or market data subscriptions required - includes synthetic 
 
 ## 🧪 Testing
 
-Run the test suite:
 
-```bash
-python -m unittest test_portfolio.py
-```
