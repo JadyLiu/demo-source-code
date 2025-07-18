@@ -23,10 +23,10 @@ financial-demo/
 ### Basic Usage
 
 ```python
-from portfolio import Portfolio
 from strategies import MovingAverageStrategy
 from data_loader import DataLoader
 from backtester import Backtester
+from portfolio import Portfolio
 
 # Create portfolio
 portfolio = Portfolio(initial_cash=100000)
@@ -46,16 +46,6 @@ results = backtester.run_backtest(data, strategy, 'AAPL')
 print(backtester.generate_report())
 ```
 
-### Live Trading Simulation
-
-```python
-# Manual trading
-portfolio = Portfolio(50000)
-portfolio.buy('AAPL', 100, 150.0)
-portfolio.sell('AAPL', 50, 160.0)
-
-print(f"Portfolio Value: ${portfolio.get_total_value({'AAPL': 155.0}):,.2f}")
-```
 
 ## 📊 Features
 
@@ -144,5 +134,3 @@ risk_manager = RiskManager(
 No external API keys or market data subscriptions required - includes synthetic data generation for testing.
 
 ## 🧪 Testing
-
-
