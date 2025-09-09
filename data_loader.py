@@ -130,7 +130,7 @@ class DataLoader:
         delta = df["close"].diff()
         gain = (delta.where(delta > 0, 0)).rolling(window=14).mean()
         loss = (-delta.where(delta < 0, 0)).rolling(window=14).mean()
-        rs = gain / loss
+        rs = gain / loss.replace(0, np.nan)  # Avoid division by zero
         df["rsi"] = 100 - (100 / (1 + rs))
 
         return df
@@ -145,3 +145,31 @@ class DataLoader:
                 self.generate_sample_data(symbol, days)
             data[symbol] = self.data_cache[symbol]
         return data
+
+    def calculate_max_drawdown(self, symbol: str) -> float:
+        """Calculate the maximum drawdown for a symbol.
+        
+        Max drawdown is calculated as the maximum peak-to-trough decline
+        in the cumulative returns of the price series.
+        
+        Returns:
+            float: Maximum drawdown as a percentage (0-100)
+        """
+        if symbol not in self.data_cache:
+            self.generate_sample_data(symbol)
+            
+        # Get closing prices
+        prices = self.data_cache[symbol]['close']
+        
+        # Calculate cumulative maximum (running high watermark)
+        running_max = prices.cummax()
+        
+        # Calculate drawdown from running maximum
+        drawdown = (prices - running_max) / running_max
+        
+        # Find the minimum drawdown (most negative value)
+        max_drawdown = drawdown.min()
+        
+        # Return as percentage (absolute value)
+        return abs(max_drawdown) * 100
+    
