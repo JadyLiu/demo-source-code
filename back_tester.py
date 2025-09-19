@@ -1,7 +1,7 @@
 import pandas as pd
 from typing import Dict, List, Any
-from source.portfolio import Portfolio
-from source.risk_manager import RiskManager
+from portfolio import Portfolio
+from risk_manager import RiskManager
 
 
 class Backtester:
