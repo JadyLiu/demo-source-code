@@ -1,7 +1,7 @@
-from source.portfolio import Portfolio
-from source.strategies import MovingAverageStrategy
-from source.data_loader import DataLoader
-from source.back_tester import Backtester
+from portfolio import Portfolio
+from strategies import MovingAverageStrategy
+from data_loader import DataLoader
+from src.back_tester import Backtester
 
 # Create portfolio
 portfolio = Portfolio(initial_cash=100000)
